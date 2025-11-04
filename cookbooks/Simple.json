@@ -1,0 +1,59 @@
+{
+    "recipes": [
+        {
+            "name": "Grilled Cheese Sandwich",
+            "ingredients": "Bread\nCheddar Cheese\nButter",
+            "description": "A warm, crispy, and gooey classic comfort sandwich.",
+            "instructions": "Butter bread slices\nAdd cheese between slices\nGrill until golden and melted",
+            "tags": "lunch\nsnack\ncomfort food",
+            "prep time": 5,
+            "cooking time": 10,
+            "serves": 1,
+            "calories": 450
+        },
+        {
+            "name": "Caesar Salad",
+            "ingredients": "Romaine Lettuce\nCroutons\nParmesan Cheese\nCaesar Dressing\nChicken Breast",
+            "description": "A fresh and crunchy salad with creamy Caesar dressing and grilled chicken.",
+            "instructions": "Grill chicken\nChop lettuce\nToss lettuce with dressing\nTop with croutons, parmesan, and sliced chicken",
+            "tags": "salad\nlunch\nhealthy",
+            "prep time": 10,
+            "cooking time": 10,
+            "serves": 2,
+            "calories": 600
+        },
+        {
+            "name": "Beef Tacos",
+            "ingredients": "Taco Shells\nGround Beef\nLettuce\nTomato\nCheddar Cheese\nSour Cream\nTaco Seasoning",
+            "description": "Crispy tacos filled with seasoned beef and fresh toppings.",
+            "instructions": "Cook beef with seasoning\nFill taco shells\nAdd lettuce, tomato, cheese, and sour cream",
+            "tags": "mexican\ndinner\nparty food",
+            "prep time": 15,
+            "cooking time": 15,
+            "serves": 4,
+            "calories": 1000
+        },
+        {
+            "name": "Chocolate Chip Cookies",
+            "ingredients": "Flour\nButter\nSugar\nBrown Sugar\nEggs\nVanilla Extract\nChocolate Chips\nBaking Soda\nSalt",
+            "description": "Soft and chewy cookies packed with chocolate chips.",
+            "instructions": "Cream butter and sugars\nAdd eggs and vanilla\nMix dry ingredients\nFold in chocolate chips\nBake until golden",
+            "tags": "dessert\nbaking\nsnack",
+            "prep time": 15,
+            "cooking time": 12,
+            "serves": 24,
+            "calories": 1800
+        },
+        {
+            "name": "Tomato Soup",
+            "ingredients": "Tomatoes\nOnion\nGarlic\nOlive Oil\nVegetable Broth\nCream\nSalt\nPepper",
+            "description": "A smooth, creamy tomato soup perfect for pairing with grilled cheese.",
+            "instructions": "Sauté onion and garlic\nAdd tomatoes and broth\nSimmer\nBlend until smooth\nStir in cream and season",
+            "tags": "soup\ncomfort food\ndinner",
+            "prep time": 10,
+            "cooking time": 30,
+            "serves": 4,
+            "calories": 700
+        }
+    ]
+}
