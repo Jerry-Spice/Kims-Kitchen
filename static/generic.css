@@ -29,3 +29,63 @@
 .flexend {
     justify-content: end;
 }
+
+.header-row {
+    text-align: center;
+    padding: 5px;
+    font-weight: 900;
+}
+
+.header-row td {
+    padding: 0 0.5vw;
+}
+
+.data-row {
+    text-align: center;
+    padding: 5px;
+    font-style: italic;
+}
+
+.data-row td {
+    padding: 0 0.5vw;
+}
+
+.wide100 {
+    width: 100%;
+}
+
+.wide90 {
+    width: 90%;
+}
+
+.wide80 {
+    width: 80%;
+}
+
+.wide70 {
+    width: 70%;
+}
+
+.wide60 {
+    width: 60%;
+}
+
+.wide50 {
+    width: 50%;
+}
+
+.wide40 {
+    width: 40%;
+}
+
+.wide30 {
+    width: 30%;
+}
+
+.wide20 {
+    width: 20%;
+}
+
+.wide10 {
+    width: 10%;
+}
