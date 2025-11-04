@@ -1,0 +1,31 @@
+.flex {
+    display: flex;
+}
+
+.flexrow {
+    flex-direction: row;
+}
+
+.flexcol {
+    flex-direction: column;
+}
+
+.flexspace {
+    justify-content: space-between;
+}
+
+.flexaround {
+    justify-content: space-around;
+}
+
+.flexcenter {
+    justify-content: center;
+}
+
+.flexstart {
+    justify-content: start;
+}
+
+.flexend {
+    justify-content: end;
+}

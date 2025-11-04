@@ -1,4 +1,4 @@
-@media (max-width: 600px) {
+@media (pointer: none), (pointer:coarse) {
     body {
         margin: 0px;
         padding: 0px;

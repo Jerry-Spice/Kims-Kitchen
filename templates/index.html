@@ -1,6 +1,8 @@
 <html>
     <head>
-        <link rel="stylesheet" href="{{ url_for( 'static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for( 'static', filename='phone-style.css') }}">
+        <link rel="stylesheet" href="{{ url_for( 'static', filename='desktop-style.css') }}">
+        <link rel="stylesheet" href="{{ url_for( 'static', filename='generic.css') }}">
     </head>
     <body>
         <div class="header">
@@ -12,16 +14,24 @@
             <div class="flex flexcol flexstart">
                 <!-- Search Bar For Searching -->
                 <div class="content-section">
-
+                    <form class="recipe-search">
+                        <div class="flex flexcol flexstart">
+                            <h2 class="form-header">Recipe Search</h2>
+                            <input class="search-box" type="text" name="target_recipe" placeholder="Search for a recipe..." />
+                            <div class="flex flexrow flexend">
+                                <input class="search-submit" type="submit" value="Search" />
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="flex flexrow flexspace">
+                <div class="flex flexrow flexaround">
                     <!-- Random recipes For viewing -->
                     <div class="content-section">
-
+                        <h1>Random Recipes</h1>
                     </div>
                     <!-- Random tags to Look at -->
                     <div class="content-section">
-
+                        <h1>Random Tags</h1>
                     </div>
                 </div>
             </div>
