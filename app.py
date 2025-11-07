@@ -2,13 +2,16 @@ from flask import Flask, render_template, request, redirect, url_for
 
 from Recipe import Recipe
 from Cookbook import Cookbook
-from User import User
+from RecipeDatabase import RecipeDatabase
+
+library = RecipeDatabase("./cookbooks")
+
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", files=library.files)
 
 
 if __name__ == "__main__":

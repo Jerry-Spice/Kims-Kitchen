@@ -25,6 +25,13 @@
                         </div>
                     </form>
                 </div>
+                {% if files %}
+                    <ul>
+                    {% for file in files %}
+                        <li>{{ file }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
                 <div class="flex flexrow flexaround">
                     <!-- Random recipes For viewing -->
                     <div class="content-section wide70">
