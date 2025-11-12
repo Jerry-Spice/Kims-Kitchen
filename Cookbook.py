@@ -15,7 +15,7 @@ class Cookbook(object):
             f.close()
         recipes = json.loads(data)["recipes"]
         for recipe in recipes:
-            self.recipes.append(Recipe(recipe["name"], recipe["ingredients"],recipe["description"],recipe["instructions"],recipe["tags"],recipe["prep time"],recipe["cooking time"],recipe["serves"],recipe["calories"]))
+            self.recipes.append(Recipe(recipe["name"], recipe["ingredients"],recipe["description"],recipe["instructions"],recipe["tags"],recipe["tag colors"],recipe["prep time"],recipe["cooking time"],recipe["serves"],recipe["calories"]))
     
     def __str__(self):
         message = f"** {self.name} **\n"

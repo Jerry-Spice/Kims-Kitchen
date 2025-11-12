@@ -1,18 +1,64 @@
 from flask import Flask, render_template, request, redirect, url_for
 
+import random
+
 from Recipe import Recipe
 from Cookbook import Cookbook
-from RecipeDatabase import RecipeDatabase
+from Database import Database
 
-library = RecipeDatabase("./cookbooks")
+library = Database("./cookbooks")
 
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html", files=library.files)
+    recipePool = library.getAllRecipes()
+    tagPool = library.getAllTags()
+    
+    shuffle = random.randint(0, len(tagPool[0]))
+    for i in range(shuffle):
+        index = random.randint(0, len(tagPool[0]) - 1)
+        temp = tagPool[0][index]
+        tagPool[0][index] = tagPool[0][i]
+        tagPool[0][i] = temp
+        temp = tagPool[1][index]
+        tagPool[1][index] = tagPool[1][i]
+        tagPool[1][i] = temp
 
+    randomRecipes = []
+    for i in range(6):
+        if (len(recipePool) - 1) <= 0:
+            break
+        item = recipePool[random.randint(0, len(recipePool) - 1)]
+        recipePool.remove(item)
+        randomRecipes.append(item)
+    
+    return render_template("index.html", randomRecipes1=randomRecipes[0:3], randomRecipes2=randomRecipes[3:6], tagPool=tagPool)
+
+@app.route("/search", methods=["POST"])
+def recipe_search():
+    data = request.form
+    recipes = library.findRecipe(data["target_recipe"], fuzzy=True)
+    if len(recipes) == 0:
+        return render_template("recipe_failure.html", recipe_search=data["target_recipe"])
+    elif len(recipes) == 1:
+        return redirect(f"/recipes/{data[0]}", code=302)
+    else:
+        jsonRecipes = []
+        for recipe in recipes:
+            jsonRecipes.append(recipe.toJSON())
+        print(jsonRecipes)
+        return render_template("recipe_options.html", recipes=jsonRecipes)
+
+@app.route("/recipes/<recipe_name>")
+def recipe_pages(recipe_name):
+    recipes = library.findRecipe(recipe_name)
+    if len(recipes) == 0:
+        return render_template("recipe_failure.html")
+    if len(recipes) > 1:
+        return render_template("recipe_options.html")
+    return render_template("recipe.html", recipe=recipes[0].toJSON())
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

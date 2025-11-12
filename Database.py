@@ -3,7 +3,7 @@ import random
 from Cookbook import Cookbook
 from Recipe import Recipe
 
-class RecipeDatabase(object):
+class Database(object):
     def __init__(self, data_directory):
         self.data_directory = data_directory
         self.files = os.listdir(self.data_directory)
@@ -17,7 +17,7 @@ class RecipeDatabase(object):
         else:
             return None
     
-    def findRecipe(self, name):
+    def findRecipe(self, name, fuzzy=False):
         # let n be the number of files in a directory
         # let g be the number of recipes in a cookbook file
         # n < g typically
@@ -27,12 +27,34 @@ class RecipeDatabase(object):
         for file in os.listdir(self.data_directory):
             cookbook = Cookbook(file, self.data_directory + file)
             for recipe in cookbook.recipes:
-                if name.lower() in recipe.name.lower():
-                    matches.append(recipe)
+                if fuzzy:
+                    if name.lower() in recipe.name.lower():
+                        matches.append(recipe)
+                else:
+                    if name.lower() == recipe.name.lower():
+                        matches.append(recipe)
+        return matches
+
+    def getAllRecipes(self, mode=1):
+        matches = []
+        files = os.listdir(self.data_directory)
+        for i in range(0,len(files), mode):
+            file = files[i]
+            cookbook = Cookbook(file, self.data_directory + file)
+            for recipe in cookbook.recipes:
+                matches.append(recipe)
         return matches
     
-    def pickRandomRecipe(self):
-        pass
+    def getAllTags(self):
+        recipes = self.getAllRecipes()
+        tags = []
+        tag_colors = []
+        for recipe in recipes:
+            for i in range(len(recipe.tags)):
+                if recipe.tags[i] not in tags:
+                    tags.append(recipe.tags[i])
+                    tag_colors.append(recipe.tag_colors[i])
+        return [tags, tag_colors]
 
     def __str__(self):
         message = "----- Recipe Database -----\n"
@@ -40,8 +62,9 @@ class RecipeDatabase(object):
             message += " - " + str(file) + "\n"
         return message[:-1]
 
-
 #### EXAMPLE
-# d1 = RecipeDatabase("./cookbooks")
+# d1 = Database("./cookbooks")
 # print(d1)
-# print(d1.findRecipe("cake"))
+# cakes = d1.findRecipe("cake")
+# for cake in cakes:
+#     print(cake.name)

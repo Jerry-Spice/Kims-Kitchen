@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for( 'static', filename='phone-style.css') }}">
+        <link rel="stylesheet" href="{{ url_for( 'static', filename='desktop-style.css') }}">
+        <link rel="stylesheet" href="{{ url_for( 'static', filename='generic.css') }}">
+    </head>
+    <body>
+        <div class="header">    
+            <h1 class="title">Kim's Kitchen</h1>
+            <h2 class="subtitle">A recipe management system</h2>
+        </div>
+        <div class="mainarea">
+            <div class="content-section">
+                <form class="recipe-search" action="/search" method="POST">
+                    <div class="flex flexcol flexstart">
+                        <h2 class="form-header">Recipe Search</h2>
+                        
+                        <div class="flex flexrow flexend">
+                            <input class="search-box" type="text" name="target_recipe" placeholder="Search for a recipe..." />
+                            <input class="search-submit" type="submit" value="Search" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="content-section">
+                {% if recipe %}
+                    <h1>{{ recipe.name }}</h1>
+                    <p>{{ recipe.description }}</p>
+                    <table class="flex flexrow flexcenter">
+                        <tr class="header-row">
+                            <td>Prep</td>
+                            <td>Cook</td>
+                            <td>Serves</td>
+                            <td>Calories</td>
+                        </tr>
+                        <tr class="data-row">
+                            <td>{{ recipe.prep_time }}</td>
+                            <td>{{ recipe.cook_time }}</td>
+                            <td>{{ recipe.serves }}</td>
+                            <td>{{ recipe.calories }}</td>
+                        </tr>
+                    </table>
+                    <div class="tags">
+                        {% for i in range(recipe.tags | length ) %}
+                            <p class="{{ recipe.tag_colors[i] }}tag">{{ recipe.tags[i] }}</p>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <h2>Ingredients</h2>
+                    <p>{{ recipe.ingredients }}</p>
+                    <hr>
+                    <h2>Instructions</h2>
+                    <p>{{ recipe.instructions }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+</html>

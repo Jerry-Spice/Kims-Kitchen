@@ -85,7 +85,12 @@
     .tags {
         display: flex;
         flex-direction: row;
-        justify-content: start;
+        justify-content: center;
+    }
+
+    .tags a {
+        text-decoration: none;
+        color: black;
     }
 
     .recipe-description {

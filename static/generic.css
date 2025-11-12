@@ -89,3 +89,15 @@
 .wide10 {
     width: 10%;
 }
+
+.textleft {
+    text-align: left;
+}
+
+.textcenter {
+    text-align: center;
+}
+
+.textright {
+    text-align: right;
+}
