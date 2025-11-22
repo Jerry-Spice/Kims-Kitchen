@@ -1,58 +1,82 @@
 <html>
     <head>
-        <link rel="stylesheet" href="{{ url_for( 'static', filename='phone-style.css') }}">
-        <link rel="stylesheet" href="{{ url_for( 'static', filename='desktop-style.css') }}">
-        <link rel="stylesheet" href="{{ url_for( 'static', filename='generic.css') }}">
+        <link
+            rel="stylesheet"
+            href="{{ url_for( 'static', filename='phone-style.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for( 'static', filename='desktop-style.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for( 'static', filename='generic.css') }}"
+        />
     </head>
     <body>
-        <div class="header">    
-            <h1 class="title">Kim's Kitchen</h1>
-            <h2 class="subtitle">A recipe management system</h2>
+        <div class="header">
+            <a href="/">
+                <h1 class="title">Kim's Kitchen</h1>
+                <h2 class="subtitle">A recipe management system</h2>
+            </a>
         </div>
         <div class="mainarea">
             <div class="content-section">
                 <form class="recipe-search" action="/search" method="POST">
                     <div class="flex flexcol flexstart">
                         <h2 class="form-header">Recipe Search</h2>
-                        
+
                         <div class="flex flexrow flexend">
-                            <input class="search-box" type="text" name="target_recipe" placeholder="Search for a recipe..." />
-                            <input class="search-submit" type="submit" value="Search" />
+                            <input
+                                class="search-box"
+                                type="text"
+                                name="target_recipe"
+                                placeholder="Search for a recipe..."
+                            />
+                            <input
+                                class="search-submit"
+                                type="submit"
+                                value="Search"
+                            />
                         </div>
                     </div>
                 </form>
             </div>
             <div class="content-section">
                 {% if recipes %}
-                    <div class="flex flexcol flexstart">
-                        {% for recipe in recipes %}
-                            <a class="recipe-link" href="/recipes/{{ recipe.name }}">
-                                <div class="recipe">
-                                    <h2 class="recipe-name">{{ recipe.name }}</h2>
-                                    <div class="tags">
-                                        {% for i in range(recipe.tags | length ) %}
-                                            <p class="{{ recipe.tag_colors[i] }}tag">{{ recipe.tags[i] }}</p>
-                                        {% endfor %}
-                                    </div>
-                                    <table class="flex flexrow flexcenter">
-                                        <tr class="header-row">
-                                            <td>Prep</td>
-                                            <td>Cook</td>
-                                            <td>Serves</td>
-                                            <td>Calories</td>
-                                        </tr>
-                                        <tr class="data-row">
-                                            <td>{{ recipe.prep_time }}</td>
-                                            <td>{{ recipe.cook_time }}</td>
-                                            <td>{{ recipe.serves }}</td>
-                                            <td>{{ recipe.calories }}</td>
-                                        </tr>
-                                    </table>
-                                    <p class="recipe-description">{{ recipe.description }}</p>
-                                </div>
-                            </a>
-                        {% endfor %}
-                    </div>
+                <div class="flex flexcol flexstart">
+                    {% for recipe in recipes %}
+                    <a class="recipe-link" href="/recipes/{{ recipe.name }}">
+                        <div class="recipe">
+                            <h2 class="recipe-name">{{ recipe.name }}</h2>
+                            <div class="tags">
+                                {% for i in range(recipe.tags | length ) %}
+                                <p class="{{ recipe.tag_colors[i] }}tag">
+                                    {{ recipe.tags[i] }}
+                                </p>
+                                {% endfor %}
+                            </div>
+                            <table class="flex flexrow flexcenter">
+                                <tr class="header-row">
+                                    <td>Prep</td>
+                                    <td>Cook</td>
+                                    <td>Serves</td>
+                                    <td>Calories</td>
+                                </tr>
+                                <tr class="data-row">
+                                    <td>{{ recipe.prep_time }}</td>
+                                    <td>{{ recipe.cook_time }}</td>
+                                    <td>{{ recipe.serves }}</td>
+                                    <td>{{ recipe.calories }}</td>
+                                </tr>
+                            </table>
+                            <p class="recipe-description">
+                                {{ recipe.description }}
+                            </p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
                 {% endif %}
             </div>
         </div>

@@ -10,13 +10,13 @@ class Database(object):
         # Fix the path in case we forget to add the final / for path operations
         if self.data_directory[-1] != '/':
             self.data_directory += '/'
-    
+
     def getCookbook(self, name):
         if os.path.exists(self.data_directory + name):
             return Cookbook(self.data_directory + name)
         else:
             return None
-    
+
     def findRecipe(self, name, fuzzy=False):
         # let n be the number of files in a directory
         # let g be the number of recipes in a cookbook file
@@ -44,7 +44,7 @@ class Database(object):
             for recipe in cookbook.recipes:
                 matches.append(recipe)
         return matches
-    
+
     def getAllTags(self):
         recipes = self.getAllRecipes()
         tags = []
@@ -55,6 +55,16 @@ class Database(object):
                     tags.append(recipe.tags[i])
                     tag_colors.append(recipe.tag_colors[i])
         return [tags, tag_colors]
+
+    def findAllWithTag(self, target):
+        recipes = self.getAllRecipes()
+        results = []
+        for recipe in recipes:
+            for tag in recipe.tags:
+                if tag.lower() == target.lower():
+                    results.append(recipe)
+                    break
+        return results
 
     def __str__(self):
         message = "----- Recipe Database -----\n"

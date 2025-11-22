@@ -1,28 +1,51 @@
 <html>
     <head>
-        <link rel="stylesheet" href="{{ url_for( 'static', filename='phone-style.css') }}">
-        <link rel="stylesheet" href="{{ url_for( 'static', filename='desktop-style.css') }}">
-        <link rel="stylesheet" href="{{ url_for( 'static', filename='generic.css') }}">
+        <link
+            rel="stylesheet"
+            href="{{ url_for( 'static', filename='phone-style.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for( 'static', filename='desktop-style.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for( 'static', filename='generic.css') }}"
+        />
     </head>
     <body>
-        <div class="header">    
-            <h1 class="title">Kim's Kitchen</h1>
-            <h2 class="subtitle">A recipe management system</h2>
+        <div class="header">
+            <a href="/">
+                <h1 class="title">Kim's Kitchen</h1>
+                <h2 class="subtitle">A recipe management system</h2>
+            </a>
         </div>
         <div class="mainarea">
             <div class="content-section">
                 <form class="recipe-search" action="/search" method="POST">
                     <div class="flex flexcol flexstart">
                         <h2 class="form-header">Recipe Search</h2>
-                        
+
                         <div class="flex flexrow flexend">
-                            <input class="search-box" type="text" name="target_recipe" placeholder="Search for a recipe..." />
-                            <input class="search-submit" type="submit" value="Search" />
+                            <input
+                                class="search-box"
+                                type="text"
+                                name="target_recipe"
+                                placeholder="Search for a recipe..."
+                            />
+                            <input
+                                class="search-submit"
+                                type="submit"
+                                value="Search"
+                            />
                         </div>
                     </div>
                 </form>
             </div>
-            <h1>We can't find any recipes with the '{{ recipe_search }}' in the name.</h1>
+            <h1>
+                We can't find any recipes with the '{{ recipe_search }}' in the
+                name.
+            </h1>
         </div>
     </body>
 </html>
