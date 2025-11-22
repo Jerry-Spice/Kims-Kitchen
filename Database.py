@@ -11,9 +11,9 @@ class Database(object):
         if self.data_directory[-1] != '/':
             self.data_directory += '/'
 
-    def getCookbook(self, name):
-        if os.path.exists(self.data_directory + name):
-            return Cookbook(self.data_directory + name)
+    def getCookbook(self, name, file_extension=".json"):
+        if os.path.exists(self.data_directory + name + file_extension):
+            return Cookbook(name, self.data_directory + name + file_extension)
         else:
             return None
 

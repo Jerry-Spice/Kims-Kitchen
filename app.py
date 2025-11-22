@@ -74,5 +74,27 @@ def tag_pages(tag_name):
         return render_template("recipe_options.html", recipes=jsonRecipes)
     return render_template("recipe_options.html", recipes=jsonRecipes)
 
+@app.route("/cookbooks/<cookbook_name>")
+def show_cookbook(cookbook_name):
+    recipes = library.getCookbook(cookbook_name).recipes
+
+    jsonRecipes = []
+    temp = []
+    index = 0
+    for recipe in recipes:
+        if index % 3 == 0 and index != 0:
+            jsonRecipes.append(temp)
+            temp = []
+        temp.append(recipe.toJSON())
+        index += 1
+    jsonRecipes.append(temp)
+    return render_template("cookbook_manager.html", cookbook_name=cookbook_name, recipes=jsonRecipes)
+
+@app.route("/cookbooks/<cookbook_name>/remove/<recipe_name>", methods=["POST"])
+def remove_recipe_from_cookbook(cookbook_name, recipe_name):
+    cookbook = library.getCookbook(cookbook_name)
+    cookbook.remove_recipe(recipe_name)
+    return redirect(f"/cookbooks/{cookbook_name}", code=302)
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
